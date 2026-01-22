@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import Product from './models/productModel.js'
+import productRoutes from './routes/productRoutes.js'
 dotenv.config();
 
 const app = express();
@@ -21,24 +22,13 @@ mongoose.connect(process.env.mongodb_uri)
   console.log('Error connecting to database ',err)
 })
 
+app.use('/products',productRoutes);
 
 app.get('/', (req, res) => {
   res.send('Ecommerce Server is running');
 });
 
-app.post('/add',async (req,res)=>{
-  try{
-    const {name,dateCreated,warranty,price,isAvailable}=req.body;
-    const newProduct = new Product({
-      name,dateCreated,warranty,price,isAvailable
-    })
-    await newProduct.save();
-    res.send('New product has been added');
-  }
-  catch{
-    res.send('Data Couldnot be added to the database');
-  }
-})
+
 
 
 // {
@@ -48,3 +38,6 @@ app.post('/add',async (req,res)=>{
 //     "price": 45000,
 //     "isAvailable": true
 // }
+
+
+//const products = Product.find();
