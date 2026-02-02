@@ -23,7 +23,6 @@ export const getAllProducts = async (req,res)=>{
             res.json({"message": "No products available"})
         }
         res.render('products',{allProducts})
-        
     }
     catch{
         res.json({"message":"Error fetching the products"})

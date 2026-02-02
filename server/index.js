@@ -10,6 +10,7 @@ dotenv.config();
 const app = express();
 //
 app.use(express.static(path.join(path.resolve(),'/public')))
+app.use(express.urlencoded({extended:true}));
 app.set('view engine','ejs')
 app.set('views',path.join(path.resolve(),'/views'))
 app.use(express.json());
