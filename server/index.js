@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 import Product from './models/productModel.js'
 import productRoutes from './routes/productRoutes.js'
 import path from 'path'; //
+import seedDb from './seed.js';
 dotenv.config();
 
 const app = express();
@@ -26,6 +27,8 @@ mongoose.connect(process.env.mongodb_uri)
 .catch((err)=>{
   console.log('Error connecting to database ',err)
 })
+
+seedDb();
 
 app.use('/products',productRoutes);
 
