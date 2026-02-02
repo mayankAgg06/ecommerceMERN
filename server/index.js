@@ -4,10 +4,14 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import Product from './models/productModel.js'
 import productRoutes from './routes/productRoutes.js'
+import path from 'path'; //
 dotenv.config();
 
 const app = express();
-
+//
+app.use(express.static(path.join(path.resolve(),'/public')))
+app.set('view engine','ejs')
+app.set('views',path.join(path.resolve(),'/views'))
 app.use(express.json());
 app.use(cors());
 
