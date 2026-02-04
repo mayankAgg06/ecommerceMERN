@@ -35,17 +35,3 @@ app.use('/products',productRoutes);
 app.get('/', (req, res) => {
   res.send('Ecommerce Server is running');
 });
-
-
-
-
-// {
-//     "name":"mobile",
-//     "dateCreated":2025,
-//     "warranty":2,
-//     "price": 45000,
-//     "isAvailable": true
-// }
-
-
-//const products = Product.find();
