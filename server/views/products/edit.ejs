@@ -14,33 +14,33 @@
 <body>
     <div class="row">
     <div class="col-6 mx-auto">
-        <form action="/products/add" method="POST">
+        <form action="/products/update/<%= product._id%>?_method=PATCH" method="POST">
             <div class="mb-3">
                 <label for="naam" class="form-label">Name: </label>
-                <input type="text" class="form-control" name="name" id="naam" placeholder="Name of Product">
+                <input type="text" class="form-control" name="name" id="naam" value="<%= product.name %>" placeholder="Name of Product">
             </div>
             <div class="mb-3">
                 <label for="imge" class="form-label">Image: </label>
-                <input type="text" class="form-control" name="image" id="imge" placeholder="Image URL of Product">
+                <input type="text" class="form-control" name="image" id="imge" value="<%= product.image %>" placeholder="Image URL of Product">
             </div>
             <div class="mb-3">
                 <label for="paisa" class="form-label">Price: </label>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">Rs. </span>
-                    <input class="form-control" type="number" name="price" id="paisa" placeholder="Price of Product">
+                    <input class="form-control" type="number" name="price" value="<%= product.price %>" id="paisa" placeholder="Price of Product">
                 </div>
             </div>
         
             <div class="mb-3">
                 <label for="des" class="form-label">Description: </label>
-                <textarea class="form-control"  name="desc" id="des" rows="5" placeholder="Description of Product"></textarea>
+                <textarea class="form-control"  name="desc" id="des" rows="5" placeholder="Description of Product"> <%= product.desc %> </textarea>
             </div>
             <div class="mb-3">
                 <label for="naam" class="form-label">Warranty: </label>
-                <input type="text" class="form-control" name="warranty" id="naam" placeholder="Name of Product">
+                <input type="text" class="form-control" name="warranty" id="naam" value="<%= product.warranty %>" placeholder="Name of Product">
             </div>
             <button type="submit" class="btn btn-info inline-flex items-center justify-center px-5 py-2.5 
-                rounded-full text-sm font-medium border border-slate-300 text-slate-800 bg-white hover:bg-slate-50 transition">Add</button>
+                rounded-full text-sm font-medium border border-slate-300 text-slate-800 bg-white hover:bg-slate-50 transition">Save Changes</button>
         </form>
     </div>
 </div>

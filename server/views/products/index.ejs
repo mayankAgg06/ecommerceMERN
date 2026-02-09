@@ -16,7 +16,7 @@
   <div class="max-w-7xl mx-auto">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       <% for(const item of allProducts) {%>
-        
+        <a href="/products/<%= item._id %>">
       <!-- component -->
       <div class="w-full bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all">
         <div class="relative">
@@ -54,7 +54,7 @@
           </button>
         </div>
       </div>
-      
+      </a>
       <% } %>
     </div>
   </div>
