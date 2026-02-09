@@ -15,7 +15,9 @@ router.get('/allProducts',getAllProducts)
 
 router.get('/:id' , async(req,res)=>{
     let {id} = req.params;
-    let product = await Product.findById(id);
+    let product = await Product.findById(id).populate('reviews'); 
+    console.log(product);
+    console.log("POPULATED REVIEWS:", product.reviews);
     res.render('products/show' , {product});
 })
 

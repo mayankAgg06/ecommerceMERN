@@ -5,6 +5,8 @@ import Review from '../models/reviewsModel.js';
 const router = express.Router();
 
 router.post('/products/:id/review', async (req, res) => {
+
+    console.log("BODY:", req.body); 
   const { id } = req.params;
   const { rating, comment } = req.body;
 
@@ -16,15 +18,11 @@ router.post('/products/:id/review', async (req, res) => {
     { runValidators: false } // not required, bs asaan karne ke liye hai
   );
 
+  console.log("SAVED REVIEW:", review);
+
+
   res.redirect(`/products/${id}`);
 });
 
-
-router.get('/products/:id' , async(req,res)=>{
-    let {id} = req.params;
-    let product = await Product.findById(id).populate('reviews'); //changed
-    console.log(product);
-    res.render('products/show' , {product});
-})
 
 export default router;
