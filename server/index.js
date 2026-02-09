@@ -7,6 +7,7 @@ import productRoutes from './routes/productRoutes.js'
 import path from 'path'; //
 import seedDb from './seed.js';
 import methodOverride from 'method-override';
+import reviewRoutes from './routes/reviewRoutes.js';
 dotenv.config();
 
 const app = express();
@@ -33,6 +34,7 @@ mongoose.connect(process.env.mongodb_uri)
 seedDb();
 
 app.use('/products',productRoutes);
+app.use(reviewRoutes);
 
 app.get('/', (req, res) => {
   res.send('Ecommerce Server is running');

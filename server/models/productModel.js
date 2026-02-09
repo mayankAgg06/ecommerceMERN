@@ -7,7 +7,12 @@ const productSchema = new mongoose.Schema({
     price:{type:Number, required:true},
     isAvailable:{type:Boolean, required:true},
     image: {type: String, required: false, trim:true},
-    desc: {type: String, required: true, trim:true}
+    desc: {type: String, required: true, trim:true},
+    reviews:[   //adding this
+    {
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Review'
+    }]
 });
 const Product = mongoose.model('Product',productSchema);
 
