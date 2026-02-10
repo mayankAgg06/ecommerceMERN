@@ -1,36 +1,15 @@
 import express from 'express'
-import { addProductController,
-  getAllProducts } from '../controllers/productController.js';
-import Product from '../models/productModel.js';
-import path from 'path';
+import { addProduct,getAllProducts,editProductForm, 
+  deleteProduct,showProduct,updateChanges, newProductForm } from '../controllers/productController.js';
 
 const router = express.Router();
 
-router.get('/new',(req,res)=>{
-  res.render('products/new')
-})
-router.post('/add',addProductController)
-
+router.get('/new',newProductForm)
+router.post('/add',addProduct)
 router.get('/allProducts',getAllProducts)
+router.get('/:id' , showProduct)
+router.get('/:id/edit' , editProductForm)
+router.delete('/:id/delete', deleteProduct)
+router.patch('/update/:id',updateChanges)
 
-router.get('/:id' , async(req,res)=>{
-    let {id} = req.params;
-    let product = await Product.findById(id).populate('reviews'); 
-    console.log(product);
-    console.log("POPULATED REVIEWS:", product.reviews);
-    res.render('products/show' , {product});
-})
-
-router.get('/:id/edit' , async(req,res)=>{
-    let {id} = req.params;
-    let product = await Product.findById(id);
-    res.render('products/edit' , {product});
-})
-
-router.patch('/update/:id',async(req,res)=>{
-  let {id} = req.params;
-  const {name,dateCreated,warranty,price,isAvailable,image,desc}=req.body;
-  await Product.findByIdAndUpdate(id, {name,dateCreated,warranty,price,isAvailable,image,desc});
-  res.redirect(`/products/${id}`)
-})
 export default router;
