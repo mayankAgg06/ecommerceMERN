@@ -1,64 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <style type="text/tailwindcss">
-      @theme {
-        --color-clifford: #da373d;
-      }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    theme {
+      --color-clifford: #da373d;
+    }
+  </style>
 </head>
+
 <body class="min-h-screen bg-gray-100 p-4">
+  <%- include("../navbar") %>
+  <div class="max-w-7xl mx-auto pt-20">
+    <!-- Step 10: Flash messages -->
+    <%- include("../partials/flash") %>
 
-  <div class="max-w-7xl mx-auto">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-      <% for(const item of allProducts) {%>
-        <a href="/products/<%= item._id %>">
-      <!-- component -->
-      <div class="w-full bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all">
-        <div class="relative">
-          <img 
-            src="<%= item.image %>"
-            alt="Product"
-            class="w-full h-52 object-cover"
-          />
-          <span class="absolute top-3 right-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-            Sale
-          </span>
-        </div>
-        
-        <div class="p-5 space-y-4">
-          <div>
-            <h3 class="text-xl font-bold text-gray-900"><%= item.name %></h3>
-            <p class="text-gray-500 mt-1"><%= item.desc %></p>
-          </div>
-          
-          <div class="flex justify-between items-center">
-            <div class="space-y-1">
-              <p class="text-2xl font-bold text-gray-900">$<%= item.price %></p>
-              <!-- <p class="text-sm text-gray-500 line-through">$69.99</p> -->
+      <% for(const item of allProducts) { %>
+        <a href="/products/<%= item.id %>">
+          <!-- component -->
+          <div class="w-full bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all">
+            <div class="relative">
+              <img src="<%= item.image %>" alt="Product" class="w-full h-52 object-cover" />
+              <span class="absolute top-3 right-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">Sale</span>
             </div>
-            
-            <div class="flex items-center gap-1">
-              <div class="text-yellow-400">★★★★</div>
-              <div class="text-gray-300">★</div>
-              <span class="text-sm text-gray-600 ml-1">(42)</span>
-            </div>
-          </div>
 
-          <button class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 rounded-lg transition-colors">
-            Add to Cart
-          </button>
-        </div>
-      </div>
-      </a>
+            <div class="p-5 space-y-4">
+              <div>
+                <h3 class="text-xl font-bold text-gray-900"><%= item.name %></h3>
+                <p class="text-gray-500 mt-1"><%= item.desc %></p>
+              </div>
+
+              <div class="flex justify-between items-center">
+                <div class="space-y-1">
+                  <p class="text-2xl font-bold text-gray-900"><%= item.price %></p>
+                </div>
+
+                <div class="flex items-center gap-1">
+                  <div class="text-yellow-400"></div>
+                  <div class="text-gray-300"></div>
+                  <span class="text-sm text-gray-600 ml-1">42</span>
+                </div>
+              </div>
+
+              <button class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 rounded-lg transition-colors">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </a>
       <% } %>
     </div>
   </div>
-  
 </body>
-
 </html>
